@@ -42,3 +42,27 @@ Contributions are welcome. Please first read our [Code of Conduct](./CODE_OF_CON
 ## License
 
 No license specified yet. If you plan to publish or reuse this code, consider adding a suitable open‑source license.
+
+## Lint & CI
+
+- Linter: ESLint is configured via `eslint.config.mjs`.
+- Local script: `npm run lint` (and `npm run lint:fix`).
+- CI: a GitHub Actions workflow automatically runs ESLint on each push/PR (`.github/workflows/eslint.yml`).
+
+### Local Git hook (without Husky)
+
+A simple `pre-commit` hook is provided in `.github/.githooks/pre-commit` and runs `npm run lint`.
+
+To enable it locally (once per repo):
+
+```
+git config core.hooksPath .github/.githooks
+```
+
+Then make sure the hook is executable (Git usually keeps the mode from the repo; if not):
+
+```
+chmod +x .github/.githooks/pre-commit
+```
+
+On every `git commit`, ESLint will run. The CI will also fail PRs with ESLint errors.

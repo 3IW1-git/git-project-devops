@@ -1,1 +1,5 @@
+#!/bin/sh
+set -e
+
+# Exécuter ESLint avant le commit
 npm run lint
